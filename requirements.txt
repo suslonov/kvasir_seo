@@ -1,0 +1,14 @@
+requests
+python-dotenv
+pydantic
+pandas
+pyarrow
+beautifulsoup4
+lxml
+trafilatura
+pyyaml
+plotly
+scikit-learn
+rich
+# Optional: semantic keyword clustering. Heavy install; enable when needed.
+# sentence-transformers

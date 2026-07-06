@@ -1,0 +1,37 @@
+# Where the pipeline discovers Quizly content from.
+# The crawler and DB-ingest read this. Manual seeds are for debugging only.
+
+quizly:
+  base_url: https://quizly.pub
+  # Seed URLs to start crawling from. The crawler follows same-domain internal
+  # links up to max_pages / max_depth.
+  seed_urls:
+    - https://quizly.pub/
+  # Optional explicit URL patterns to include when generating candidate URLs.
+  url_patterns:
+    - /contest?id={id}
+  # Range of numeric ids to probe for pattern-based URLs (inclusive). Set
+  # enabled=false to skip pattern probing and rely on link crawling only.
+  id_probe:
+    enabled: false
+    start: 1
+    end: 50
+  crawl:
+    max_pages: 200
+    max_depth: 2
+    request_delay_seconds: 1.0
+    user_agent: "kvasir_seo/0.1 (+https://quizly.pub keyword research)"
+    respect_robots_txt: true
+
+# Optional CSV export from the Quizly production/staging DB. Preferred over
+# crawling when available. Leave path null to skip.
+db_export:
+  path: null   # e.g. data/processed/quizly_entities.csv
+
+# Manual override seeds. NOT the primary source. Only used when
+# --allow-manual-seeds is passed to the discovery script.
+manual_seeds: []
+
+# DataForSEO "Keywords For Site" targets (Source C).
+keywords_for_site_targets:
+  - quizly.pub

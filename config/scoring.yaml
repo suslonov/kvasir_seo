@@ -1,0 +1,52 @@
+# Keyword filtering and opportunity scoring. Tune here without touching code.
+
+filters:
+  min_search_volume: 20
+  max_competition: 0.8
+
+# Opportunity score weights (should sum to ~1.0).
+weights:
+  search_volume_log: 0.35
+  low_competition: 0.20
+  trend_growth: 0.15
+  relevance_to_quizly: 0.20
+  question_intent: 0.10
+
+# Downrank / drop keywords matching these categories.
+negative_filters:
+  adult: true
+  piracy: true
+  explicit_political_targeting: true
+  unrelated_commercial: true
+
+# Substring patterns (lowercased) used by negative filters.
+negative_patterns:
+  adult: [porn, xxx, nude, sex]
+  piracy: [download, torrent, free pdf, epub download, pirate]
+  unrelated_commercial: [buy, cheap, discount, coupon, for sale, price]
+
+# Keyword clustering for the report's cluster view.
+#   method: lexical  -> group by matched entity / first content word (no deps)
+#   method: semantic -> embed + agglomerative clustering. Uses
+#     sentence-transformers if installed, else a scikit-learn TF-IDF fallback.
+clustering:
+  method: lexical
+  model: all-MiniLM-L6-v2
+  max_clusters: 12
+
+# Recommended-action thresholds, evaluated top to bottom.
+actions:
+  - action: create_landing_page
+    when: "opportunity_score >= 0.75 and content_available == False"
+  - action: add_faq_to_existing_page
+    when: "opportunity_score >= 0.6 and content_available == True"
+  - action: create_chat
+    when: "question_intent_score >= 0.6 and content_available == False"
+  - action: create_quiz
+    when: "relevance_score >= 0.6 and search_volume >= 100"
+  - action: improve_title_meta
+    when: "content_available == True and opportunity_score >= 0.4"
+  - action: monitor_only
+    when: "opportunity_score >= 0.2"
+  - action: ignore_irrelevant
+    when: "True"

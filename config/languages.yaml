@@ -1,0 +1,82 @@
+# Language-specific rules used by term extraction and scoring.
+# Keep signals here so scoring can be tuned without code edits.
+languages:
+  en:
+    question_words:
+      - why
+      - how
+      - who
+      - what
+      - when
+      - where
+      - did
+      - is
+      - was
+      - explain
+      - summary
+      - meaning
+    intent_signals:
+      - quiz
+      - test
+      - chat
+      - character
+      - conversation
+      - summary
+      - explained
+      - questions
+      - answers
+      - characters
+      - biography
+      - timeline
+      - analysis
+      - facts
+    stopwords:
+      - the
+      - a
+      - an
+      - of
+      - and
+      - to
+      - in
+      - for
+      - on
+      - with
+      - is
+      - are
+      - this
+      - that
+  ru:
+    question_words:
+      - почему
+      - как
+      - кто
+      - что
+      - когда
+      - где
+      - объяснение
+      - кратко
+      - смысл
+      - значение
+    intent_signals:
+      - викторина
+      - тест
+      - персонаж
+      - разговор
+      - краткое
+      - содержание
+      - вопросы
+      - ответы
+      - биография
+      - анализ
+      - факты
+    stopwords:
+      - и
+      - в
+      - на
+      - с
+      - по
+      - для
+      - это
+      - как
+      - что
+      - а

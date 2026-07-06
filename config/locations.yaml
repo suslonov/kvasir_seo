@@ -1,0 +1,30 @@
+# DataForSEO location_code / language_code per market.
+# Verify codes against DataForSEO docs before production runs:
+#   https://docs.dataforseo.com/v3/keywords_data-google_ads-locations/
+#   https://docs.dataforseo.com/v3/keywords_data-google_ads-languages/
+#
+# Each market has a short "key" used on the CLI, e.g. --market us-en
+markets:
+  us-en:
+    name: United States
+    location_code: 2840
+    language_code: en
+  uk-en:
+    name: United Kingdom
+    location_code: 2826
+    language_code: en
+  il-en:
+    name: Israel (English)
+    location_code: 2376
+    language_code: en
+  il-ru:
+    name: Israel (Russian)
+    location_code: 2376
+    language_code: ru
+  ru-ru:
+    name: Russia
+    location_code: 2643
+    language_code: ru
+
+# Market run first when none is specified.
+default_market: us-en
